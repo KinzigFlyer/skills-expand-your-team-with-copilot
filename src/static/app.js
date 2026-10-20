@@ -575,6 +575,13 @@ document.addEventListener("DOMContentLoaded", () => {
             .join("")}
         </ul>
       </div>
+      <div class="share-buttons">
+        <span class="share-label">Share:</span>
+        <button type="button" class="share-button share-facebook" title="Share on Facebook" aria-label="Share on Facebook">Facebook</button>
+        <button type="button" class="share-button share-twitter" title="Share on X" aria-label="Share on X">X</button>
+        <button type="button" class="share-button share-email" title="Share by email" aria-label="Share by email">Email</button>
+        <button type="button" class="share-button share-copy" title="Copy link" aria-label="Copy link">Copy link</button>
+      </div>
       <div class="activity-card-actions">
         ${
           currentUser
@@ -594,6 +601,8 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
+    setupShareButtons(activityCard, name, details.description);
+
     // Add click handlers for delete buttons
     const deleteButtons = activityCard.querySelectorAll(".delete-participant");
     deleteButtons.forEach((button) => {
@@ -611,6 +620,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     activitiesList.appendChild(activityCard);
+  }
+
+  // Share buttons for an activity card
+  function setupShareButtons(card, name, description) {
+    const pageUrl = window.location.href.split("#")[0];
+    const text = `Check out ${name} at Mergington High School: ${description}`;
+    const open = (url) => window.open(url, "_blank", "noopener,noreferrer");
+
+    card.querySelector(".share-facebook").addEventListener("click", () => {
+      open(
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(text)}`
+      );
+    });
+    card.querySelector(".share-twitter").addEventListener("click", () => {
+      open(
+        `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(pageUrl)}`
+      );
+    });
+    card.querySelector(".share-email").addEventListener("click", () => {
+      window.location.href = `mailto:?subject=${encodeURIComponent(name)}&body=${encodeURIComponent(text + "\n" + pageUrl)}`;
+    });
+    const copyButton = card.querySelector(".share-copy");
+    copyButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(`${text} ${pageUrl}`);
+        copyButton.textContent = "Copied!";
+      } catch (e) {
+        copyButton.textContent = "Copy failed";
+      }
+      setTimeout(() => (copyButton.textContent = "Copy link"), 2000);
+    });
   }
 
   // Event listeners for search and filter
