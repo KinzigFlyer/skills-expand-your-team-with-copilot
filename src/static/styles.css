@@ -32,6 +32,29 @@
   --info-light: #d1ecf1;
 }
 
+body[data-theme="dark"] {
+  color-scheme: dark;
+  --primary: #3949ab;
+  --primary-light: #7986cb;
+  --primary-dark: #283593;
+  --primary-text: #ffffff;
+  --secondary: #ff8f00;
+  --secondary-light: #ffb74d;
+  --secondary-dark: #e65100;
+  --secondary-text: #ffffff;
+  --background: #121212;
+  --surface: #1e1e1e;
+  --text-primary: #f5f5f5;
+  --text-secondary: #bdbdbd;
+  --border: #424242;
+  --border-light: #303030;
+  --border-focus: #616161;
+  --success-light: #1b3a20;
+  --warning-light: #4a3717;
+  --error-light: #4a2222;
+  --info-light: #18373d;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -617,6 +640,9 @@ footer {
   position: absolute;
   top: 10px;
   right: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 #user-status {
