@@ -163,6 +163,16 @@ initial_activities = {
         },
         "max_participants": 16,
         "participants": ["william@mergington.edu", "jacob@mergington.edu"]
+    },
+    "Manga Maniacs": {
+        "description": "From daring heroes to worlds full of wonder, dive into Japanese manga’s unforgettable stories and share your favorite characters, plot twists, and adventures with fellow fans.",
+        "schedule": "Tuesdays, 7:00 PM",
+        "schedule_details": {
+            "days": ["Tuesday"],
+            "start_time": "19:00"
+        },
+        "max_participants": 15,
+        "participants": []
     }
 }
 
@@ -186,4 +196,3 @@ initial_teachers = [
         "role": "admin"
     }
 ]
-
